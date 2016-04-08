@@ -2,5 +2,15 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ex: <http://example.com/express#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:Company rdf:type owl:Class .
+ex:BranchOffice a rdfs:Class .
+ex:Company a rdfs:Class .
+
+ex:hasBranchOffice a rdf:Property .
+ex:hasBranchOffice rdfs:label "The Branch Office for the Company" .
+ex:hasBranchOffice rdfs:domain ex:Company .
+
+ex:isLocatedIn a rdf:Property .
+ex:isLocatedIn rdfs:label "The location of the Branch Office" .
+ex:hasBranchOffice rdfs:domain ex:Company .
