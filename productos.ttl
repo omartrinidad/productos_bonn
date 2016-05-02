@@ -3,9 +3,16 @@
 @prefix ex: <http://example.com/express#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 ex:BranchOffice a rdfs:Class .
 ex:Company a rdfs:Class .
+ex:Product a rdfs:Class .
+ex:Place a rdfs:Class .
+
+ex:hasPrice a rdf:Property .
+ex:hasPrice rdfs:label "The Price of the product" .
+ex:hasPrice rdfs:domain ex:Company .
 
 ex:hasBranchOffice a rdf:Property .
 ex:hasBranchOffice rdfs:label "The Branch Office for the Company" .
@@ -14,3 +21,24 @@ ex:hasBranchOffice rdfs:domain ex:Company .
 ex:isLocatedIn a rdf:Property .
 ex:isLocatedIn rdfs:label "The location of the Branch Office" .
 ex:hasBranchOffice rdfs:domain ex:Company .
+
+ex:Tannenbusch a ex:Place;
+               foaf:name "Tannenbusch".
+
+ex:TaBu a ex:BranchOffice;
+    ex:isLocatedIn ex:Tannenbusch .
+
+ex:Rommerstrasse a ex:BranchOffice .
+ex:Zentrum a ex:BranchOffice .
+
+ex:ALDICorp a ex:Company;
+            foaf:name "ALDI";
+            ex:hasBranchOffice ex:TaBu .
+
+ex:NettoCorp a ex:Company;
+             foaf:name "Netto".
+
+ex:ReweCorp a ex:Company;
+        foaf:name "REWE";
+        ex:hasBranchOffice ex:Rommerstrasse;
+        ex:hasBranchOffice ex:Zentrum .

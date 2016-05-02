@@ -10,7 +10,6 @@ def filtrar(cadena):
         cadena = cadena[pos + 1:]
     return cadena
 
-
 archivo = 'productos.rdf'
 archivo = 'productos.ttl'
 
@@ -21,12 +20,17 @@ g = Graph()
 g.parse(data=sparql, format='n3')
 
 query = """
-    SELECT * WHERE 
-    { ?a a rdf:Property }
+    SELECT * WHERE
+    {
+        ?a a ex:Company .
+        ?a foaf:name ?b .
+        ?a ex:hasBranchOffice ?c .
+        ?c ex:isLocatedIn ?d .
+        ?d foaf:name ?e .
+    }
     """
 results = g.query(query)
 
 for elementos in results.bindings:
-    print filtrar( elementos['a'] )
-    #print filtrar( elementos['b'] )
-    #print filtrar( elementos['c'] )
+    print filtrar( elementos['c'] )
+    print filtrar( elementos['e'] )
